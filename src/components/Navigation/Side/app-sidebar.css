@@ -1,0 +1,60 @@
+.active-link {
+  background-color: tomato !important;
+  color: #fff !important;
+}
+.ui.ui.sidebar.menu .item::before {
+  height: 0 !important;
+}
+.ui.sidebar.menu .item.active-link {
+  border-radius: 3px !important;
+}
+.app-sidebar {
+  position: relative;
+  background: linear-gradient(
+    0deg,
+    rgba(50, 50, 80, 0.95),
+    rgba(80, 50, 80, 0.9)
+  ) !important;
+  background-size: cover !important;
+}
+.ui.sidebar.app-sidebar {
+  overflow: hidden !important;
+}
+.app-sidebar::before {
+  position: absolute;
+  width: 2000px;
+  height: 1000px;
+  opacity: 0.3;
+  background: linear-gradient(0deg, #000d, #000d),
+    url(https://source.unsplash.com/1600x900/?business) !important;
+  background-size: cover, cover !important;
+  background-repeat: no-repeat;
+  background-position: center center;
+  content: "";
+  transform: rotate(60deg);
+  bottom: -600px;
+  left: -1000px;
+}
+
+.ui.basic.button.toolbar-button {
+  position: relative;
+  color: white !important;
+}
+.ui.basic.button.toolbar-button:hover {
+  color: #fff !important;
+  background-color: transparent !important;
+}
+.ui.basic.button.toolbar-button:hover::after {
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  content: "•";
+  color: tomato;
+  bottom: 0;
+  left: 0;
+}
+
+.ui.basic.button.toolbar-button:focus {
+  color: #fff !important;
+  background-color: transparent !important;
+}
