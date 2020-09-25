@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Table, Button, Header, Image } from "semantic-ui-react";
 import StyledCheckbox from "../../../components/shared/StyledCheckbox";
 import Identicon from "react-identicons";
-import EditMemberPopup from "../EditMemberPopup";
+import MemberFormPopup from "../MemberFormPopup";
 
 const { Cell } = Table;
 const headCells = ["Name", "E-mail", "Phone", "Action"];
@@ -42,7 +42,7 @@ export default function MembersList({
           <Table.Row>
             <Table.HeaderCell />
             {headCells.map((cell) => (
-              <Table.HeaderCell>{cell}</Table.HeaderCell>
+              <Table.HeaderCell key={cell}>{cell}</Table.HeaderCell>
             ))}
           </Table.Row>
         </Table.Header>
@@ -96,7 +96,8 @@ export default function MembersList({
                     negative
                     onClick={() => handleDeleteMemberAccount(member._id)}
                   />
-                  <EditMemberPopup
+                  <MemberFormPopup
+                    isEdit
                     handleEditMemberAccount={handleEditMemberAccount}
                     member={member}
                     open={memberToEdit?._id === member._id}

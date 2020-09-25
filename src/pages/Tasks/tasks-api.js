@@ -8,6 +8,12 @@ export const getAllTasks = async () => {
   return response.data;
 };
 
+export const getAllTasksAssignedToThisMember = async _id => {
+  const ep = `${endpoint}/task/all/${_id}`;
+  const response = await axios.get(ep);
+  return response.data;
+}
+
 export const getOneTaskById = async (id) => {
   const ep = `${endpoint}/task/one/${id}`;
   const response = await axios.get(ep);

@@ -6,7 +6,7 @@ import "./app-sidebar.css";
 const menu = [
   { to: "/dashboard", icon: "dashboard" },
   { to: "/tasks", icon: "coffee" },
-  { to: "/members", icon: "group" },
+  { to: "/members", icon: "group", admin: true },
 ];
 
 export default function AppSidebar() {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Icon } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 const toolbarStyle = {
   width: "100%",
@@ -11,15 +11,9 @@ const toolbarStyle = {
 const AppbarToolbar = () => (
   <div style={toolbarStyle}>
     <Button.Group icon>
-      <Button basic className="toolbar-button">
-        <Icon name="font" />
-      </Button>
-      <Button basic className="toolbar-button">
-        <Icon name="th list" />
-      </Button>
-      <Button basic className="toolbar-button">
-        <Icon name="map" />
-      </Button>
+      <Button icon="font" basic className="toolbar-button" />
+      <Button icon="th list" basic className="toolbar-button" />
+      <Button icon="map" basic className="toolbar-button" />
     </Button.Group>
   </div>
 );

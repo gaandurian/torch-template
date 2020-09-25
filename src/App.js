@@ -1,25 +1,22 @@
 import React from "react";
 import "./App.css";
-import Layout from "./components/Layout";
-import { BrowserRouter as AppRouter, Route } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import Tasks from "./pages/Tasks";
-import Members from "./pages/Members";
+import {
+  BrowserRouter as AppRouter,
+  Route,
+  Switch,
+} from "react-router-dom";
+
+import Login from "./pages/Auth/Login";
+import Layout from "./components/Layout/Layout";
+import ProtectedRoute from './components/Auth/ProtectedRoute'
 
 function App() {
   return (
     <AppRouter>
-      <Layout>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
-        <Route path="/tasks">
-          <Tasks />
-        </Route>
-        <Route path="/members">
-          <Members />
-        </Route>
-      </Layout>
+      <Switch>
+        <Route path="/login" exact component={Login} />
+        <ProtectedRoute component={Layout} />
+      </Switch>
     </AppRouter>
   );
 }

@@ -2,10 +2,11 @@
     position: relative;
     width: calc(100% - 150px);
     margin-left: 150px;
-}
-
-.container {
+  }
+  
+  .container {
     padding-top: 25px;
     padding-left: 50px;
     padding-right: 50px;
-}
+  }
+  

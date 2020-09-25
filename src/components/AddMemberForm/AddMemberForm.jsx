@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Select } from "semantic-ui-react";
-import StyledField from "../shared/StyledField";
+import StyledField from "../shared/StyledField/StyledField";
 
-export default function AddMemberForm({ handleCreateNewMember, handleEditMemberAccount, initialValues, isEdit }) {
-  const [values, setValues] = useState( {...initialValues, password: ""} || {
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-    department: "",
-    phone: "",
-  });
+export default function AddMemberForm({
+  handleCreateNewMember,
+  handleEditMemberAccount,
+  initialValues,
+  isEdit,
+}) {
+  const [values, setValues] = useState({});
+
+  useEffect(() => {
+    isEdit && setValues({ ...initialValues, password: "" });
+  }, [isEdit, initialValues]);
+
+  const validateValuesAndSubmit = () => {
+    // const values.find(value => value === "")
+    isEdit ? handleEditMemberAccount(values) : handleCreateNewMember(values);
+  };
 
   const handleChange = (e, result) => {
     const { name, value } = result || e.target;
     setValues({ ...values, [name]: value });
   };
   return (
-    <Form onSubmit={() => isEdit ? handleEditMemberAccount(values) : handleCreateNewMember(values)}>
+    <Form onSubmit={validateValuesAndSubmit}>
       <StyledField>
         <label>First Name</label>
         <input
@@ -84,6 +91,11 @@ export default function AddMemberForm({ handleCreateNewMember, handleEditMemberA
               value: "Executive Bureau",
               text: "Executive Bureau",
             },
+            {
+              key: "Game dev.",
+              value: "Game dev.",
+              text: "Game dev.",
+            }
           ]}
         />
       </StyledField>

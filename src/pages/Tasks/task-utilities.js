@@ -23,5 +23,26 @@ tasks.map(task =>
 )
 }
 
-export const handleUpdateTaskStaus = (fromLaneId, toLaneId, cardId, index) =>
-updateTaskStatus(cardId, toLaneId);
+export const handleUpdateTaskStaus = (toLaneId, cardId) =>{
+  console.log(cardId)
+updateTaskStatus(cardId, toLaneId);}
+
+export const formatDueDate = (date) => {
+  const months = [
+    "Jan.",
+    "Feb.",
+    "Mar.",
+    "Apr.",
+    "May",
+    "Jun.",
+    "Jul.",
+    "Aug.",
+    "Sep.",
+    "Oct.",
+    "Nov.",
+    "Dec.",
+  ];
+  let parsed = new Date(date);
+  const fd = { day: parsed?.getDate(), month: months[parsed?.getMonth()] };
+  return `${fd.day}/${fd.month}`;
+};

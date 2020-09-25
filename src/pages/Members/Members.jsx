@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import StyledSegment from "../../components/shared/StyledSegment/StyledSegment";
 import {
   getAllMembers,
   toggleMemberAccount,
   createNewMember,
   deleteMemberAccount,
-  editMemberAccount
+  editMemberAccount,
 } from "./members-api";
-import { Grid } from "semantic-ui-react";
-import AddMemberForm from "../../components/AddMemberForm/AddMemberForm";
 import { MainPageTitle } from "../../components/shared/Typography";
 import MembersList from "./MembersList/MembersList";
-const { Column, Row } = Grid;
+import MemberFormPopup from "./MemberFormPopup";
+import { Button, Icon } from "semantic-ui-react";
 
 export default function Members() {
   const [members, setMembers] = useState([]);
   const [loadingMembers, setLoadingMembers] = useState(false);
+  const [memberPopupOpen, setMemberPopupOpen] = useState(false);
 
+  const addMemberButtonRef = useRef();
+
+  const handleToggleMemberPopup = () => setMemberPopupOpen(!memberPopupOpen);
   const handleGetAllMembers = () => {
     setLoadingMembers(true);
     getAllMembers().then((data) => {
@@ -34,33 +37,35 @@ export default function Members() {
   const handleToggleMemberAccount = async (_id) =>
     toggleMemberAccount(_id).then(() => handleGetAllMembers());
 
-    const handleEditMemberAccount = async values => 
-      editMemberAccount(values).then(() => handleGetAllMembers())
+  const handleEditMemberAccount = async (values) =>
+    editMemberAccount(values).then(() => handleGetAllMembers());
 
   useEffect(() => handleGetAllMembers(), []);
 
   return (
     <div>
       <MainPageTitle title="Manage Members" />
-      <Grid columns={2}>
-        <Row>
-          <Column width={10}>
-            <StyledSegment style={{ all: "unset" }} loading={loadingMembers}>
-              <MembersList
-                members={members}
-                handleToggleMemberAccount={handleToggleMemberAccount}
-                handleDeleteMemberAccount={handleDeleteMemberAccount}
-                handleEditMemberAccount={handleEditMemberAccount}
-              />
-            </StyledSegment>
-          </Column>
-          <Column width={6}>
-            <StyledSegment title="Add member" padded>
-              <AddMemberForm handleCreateNewMember={handleCreateNewMember} />
-            </StyledSegment>
-          </Column>
-        </Row>
-      </Grid>
+      <div ref={addMemberButtonRef} style={{ float: 'right'}}>
+        <Button primary onClick={handleToggleMemberPopup}>
+          <Icon name="plus" />
+          New Member
+        </Button>
+      </div>
+
+      <StyledSegment style={{ all: "unset" }} loading={loadingMembers}>
+        <MembersList
+          members={members}
+          handleToggleMemberAccount={handleToggleMemberAccount}
+          handleDeleteMemberAccount={handleDeleteMemberAccount}
+          handleEditMemberAccount={handleEditMemberAccount}
+        />
+      </StyledSegment>
+
+      <MemberFormPopup
+        handleCreateNewMember={handleCreateNewMember}
+        contextRef={addMemberButtonRef}
+        open={memberPopupOpen}
+      />
     </div>
   );
 }
