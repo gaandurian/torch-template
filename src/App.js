@@ -5,10 +5,9 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-
 import Login from "./pages/Auth/Login";
 import Layout from "./components/Layout/Layout";
-import ProtectedRoute from './components/Auth/ProtectedRoute'
+import ProtectedRoute from './components/auth/ProtectedRoute'
 
 function App() {
   return (

@@ -1,5 +1,5 @@
-import React from "./node_modules/react";
-import { Route, Redirect } from "./node_modules/react-router-dom";
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../../../pages/Auth/auth-utilities";
 
 export default function ProtectedRoute({ component: Compp, ...rest }) {
@@ -11,10 +11,8 @@ export default function ProtectedRoute({ component: Compp, ...rest }) {
           <Compp {...props} />
         ) : (
           <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location },
-            }}
+            to= "/login"
+            from={props.location}
           />
         )
       }

@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../../components/Auth/LoginForm";
+import LoginForm from "../../components/auth/LoginForm";
 import { Grid, Header, Icon } from "semantic-ui-react";
 import "./login.css"
 
