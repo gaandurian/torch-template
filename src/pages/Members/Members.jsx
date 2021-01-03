@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import StyledSegment from "../../components/shared/StyledSegment/StyledSegment";
+import StyledSegment from "../../components/shared/StyledSegment";
 import {
   getAllMembers,
   toggleMemberAccount,
@@ -8,7 +8,7 @@ import {
   editMemberAccount,
 } from "./members-api";
 import { MainPageTitle } from "../../components/shared/Typography";
-import MembersList from "./MembersList/MembersList";
+import MembersList from "./MembersList";
 import MemberFormPopup from "./MemberFormPopup";
 import { Button, Icon } from "semantic-ui-react";
 
