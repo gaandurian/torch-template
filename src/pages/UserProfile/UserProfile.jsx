@@ -26,6 +26,7 @@ export default function UserProfile(props) {
   useEffect(() => {
     setEditLoading(true);
     getMemberAndUpdateState();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return hasRightToEditProfile(_id) ? (
     <div>
